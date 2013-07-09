@@ -34,6 +34,45 @@ O HTML5 é uma linguagem para estruturação e apresentação de conteúdo para 
 
 3. Funcionamento da Interface
 
+No projeto Routeflow do Grails, foi usado um controlador chamado InterfaceController definindo apenas a página index (def index()). Dentro dessa definição da index é feita a leitura dos arquivos de teste rftest1 e rftest2. Para leitura dos roteadores que são usados nos testes é usada uma função que encontra todos os índices de ocorrência da substring desejada. A função utilizada para encontrar todos o índices é mostrada abaixo:
+
+String.metaClass.indexesOf = { match ->
+			def ret = []
+			def idx = -1
+			while( ( idx = delegate.indexOf( match, idx + 1 ) ) > -1 ) {
+			  ret << idx
+			}
+			ret
+		  }
+		  
+Encontrados todos os índices de ocorrência, nos rftests, deve-se encontrar a substring do índice e separar essa string para encontrar o roteador a ser encontrado. Nos rftests, o comando de inicialização é 'lxc-start -n roteador -d'. No rftest1 por exemplo, existem três comandos de inicialização. Para isso encontrar um vetor com todos os índices de ocorrência, depois encontra-se a substring inteira e após isso é usado uma função tokenize() para transformar um string em um vetor de palavras. O tokenize() pega a substring 'lxc-start -n roteador -d' e gera um vetor ['lxc-start', '-n', 'roteador', '-d']. Para encontrar o roteador basta pegar o terceiro elemento, no caso vetor[2].
+
+O exemplo abaixo gera um vetor com os roteadores do rftest1 e do rftest2:
+
+for(int i = 0; i < fileContents2.size(); i++){
+	start << rftest1.substring(fileContents2[i], fileContents2[i]+25).tokenize()[2]
+
+}
+
+for(int i = 0; i < fileContents3.size(); i++){
+	start << rftest2.substring(fileContents3[i], fileContents3[i]+25).tokenize()[2]
+
+}
+
+Sabendo quais são os roteadores, pode-se ler os endereços MAC pertencentes a cada um deles lendo os arquivos de configuração de cada um, usando o procedimento acima.
+
+Finalmente os vetores contendo os roteadores e MAC são retornados para a página index.html
+
+index.html:
+Nessa página de visualização da topologia, foi usada a tag canvas do html5 para desenhar todos os roteadores, ligações e máquinas virtuais ligadas. 
+Código do canvas usado na interface da topologia:
+<canvas id="myCanvas" width="1050" height="1000" 
+		style="border:1px solid #000000;">
+		
+Para desenhar a topologia do rftest1 e rftest2 foi usada a função desenhaTopologia() que tem como parâmetros os roteadores e endereços ip dos roteadores, além de uma variável que especifica se o desenha a topologia para o rftest1 ou rftest2. Os valores dos roteadores e seus endereços MAC lidos e salvos no InterfaceController são usados nessa função para inserir corretamente esses valores corretamente na representação da topologia. 
+
+Em geral, com o grais pode-se processar os dados de leitura no controlador e separadamente implementar a interface em javascript junto com html5. O uso do canvas foi bem favorável para a implementação da interface porque não nenhum carregamendo de imagens para representação da topologia, obtendo-se um melhor desempenho na execução da função desenhaTopologia().
+
 Referências
 [1] Nascimento, M. R., Rothenberg, C. E., Salvador, M. R., Denicol, R. R. and Magalhães, M. F. (2010). RouteFlow: Roteamento Commodity Sobre Redes Programáveis. XXIX Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos
 [2] Rob Sherwood, Glen Gibby, K.-K. Y. G. A. M. C. N. M. G. P. (2010). Can the production network be the testbed? OSDI’10, pages 1–14. USENIX Association.
