@@ -6,13 +6,13 @@ Extensão da Interface gráfica - Turma de Redes 2013/1 Prof. Marcondes
 
 RouteFlow: Extensão da Interface Gráfica
 
-Maykon Rocha Santana1, Danilo Codeco Carvalho1, Alessander França Queiroz da Costa1, Cédrick Bamba Nsimba1, Guilherme Henrique de Souza1
+Maykon Rocha Santana1, Danilo Codeco Carvalho1, Alessander França Queiroz da Costa1, Cédrick Bamba Nsimba1, Guilherme Picanço Rabello1
 
 1Departamento de Computação – Universidade Federal São Carlos (UFSCar)
 
 São Carlos – SP – Brazil
 
-{ maykonacademic, danilocodeco, alessander70, cedrick.bamba, rabellogp}@gmail.com
+1{ maykonacademic, danilocodeco, alessander70, cedrick.bamba, rabellogp}@gmail.com
 
 Resumo. Este documento faz uma contextualização do projeto RouteFlow e de como se dará o desenvolvimento do trabalho da disciplina de Rede de Computadores do Programa de Pós-Graduação em Ciência da Computação - PPGCC da UFSCar ministrada pelo professor Dr. Cesar Marcondes que tem como tema a Extensão da Interface Gráfica do Projeto RouteFlow.
 
