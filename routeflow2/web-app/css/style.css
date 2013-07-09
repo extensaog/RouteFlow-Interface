@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+#menu{
+	width:100%;
+	height:100px;
+	
+}
+
+.interface{
+	margin-top: 10px;
+	color: white;
+}
+
+#content{
+	margin:0 auto;
+	width: 1000px;
+	
+}
+
+
+
+
