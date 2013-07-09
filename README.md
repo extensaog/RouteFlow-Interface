@@ -29,7 +29,7 @@ Segundo a CISCO (companhia multinacional estadunidense líder mundial no ramo da
 No projeto RouteFlow, a interface gráfica auxilia os desenvolvedores no controle da infraestrutura, monitorando o sistema remotamente via Interface Web. Nela, os desenvolvedores são capazes de interagir com a interface gráfica para que os testes sejam executados da melhor maneira possível. Essa Interface permite a inspeção da topologia utilizada nas VMs (Virtual Machines) apresentando também estatísticas do processo [4].
         	O objetivo do trabalho será o de propor melhorias a essa interface, como adição de novos recursos que facilitem ainda mais a iteração entre os desenvolvedores e o sistema. Outro fator importante é que essa interface também propiciará uma facilidade na obtenção de dados estatísticos, pois possibilitará uma maior compreensão do que ocorre no sistema para eventuais melhorias que possam vir a ser implementadas, visando o aperfeiçoamento da tecnologia.
 	
-	2.1 Ferramenta Utilizadas
+2.1 Ferramenta Utilizadas
 
 Definiu-se que a interface gráfica proposta deve ser implementada com uso do Grails, framework web de alta produtividade para a plataforma Java, e HTML5.
 O Grails permite o isolamento do desenvolvedor dos detalhes complexos da persistência de dados e incorpora o padrão de desenvolvimento MVC de maneira natural. Ele também fornece templates web para fácil implementação da interface com o usuário e suporte para programação em Ajax.
@@ -81,6 +81,7 @@ Para desenhar a topologia do rftest1 e rftest2 foi usada a função desenhaTopol
 Em geral, com o grails pode-se processar os dados de leitura no controlador e separadamente implementar a interface em javascript junto com html5 na index. O uso do canvas foi bem favorável para a implementação da interface porque não houve nenhum carregamendo de imagens para representação da topologia, obtendo-se um melhor desempenho na execução da função desenhaTopologia().
 
 Referências
+
 [1] Nascimento, M. R., Rothenberg, C. E., Salvador, M. R., Denicol, R. R. and Magalhães, M. F. (2010). RouteFlow: Roteamento Commodity Sobre Redes Programáveis. XXIX Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos
 [2] Rob Sherwood, Glen Gibby, K.-K. Y. G. A. M. C. N. M. G. P. (2010). Can the production network be the testbed? OSDI’10, pages 1–14. USENIX Association.
 [3]http://oglobo.globo.com/tecnologia/numero-de-dispositivos-conectados-sera-superior-ao-dobro-da-populacao-mundial-em-2015-diz-pesquisa-2878711 acessado em 03 de abril de 2013
