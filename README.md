@@ -32,9 +32,12 @@ Definiu-se que a interface gráfica proposta deve ser implementada com uso do Gr
 O Grails permite o isolamento do desenvolvedor dos detalhes complexos da persistência de dados e incorpora o padrão de desenvolvimento MVC de maneira natural. Ele também fornece templates web para fácil implementação da interface com o usuário e suporte para programação em Ajax.
 O HTML5 é uma linguagem para estruturação e apresentação de conteúdo para a World Wide Web e é uma tecnologia chave da Internet originalmente proposto por Opera Software.1 É a quinta versão da linguagem HTML. Esta nova versão traz consigo importantes mudanças quanto ao papel do HTML no mundo da Web, através de novas funcionalidades como semântica e acessibilidade. Dentre os novos recursos dessa versão está o Canvas, para a renderização local de desenhos 2D que permitem a economia de banda e fácil padronização de layouts. Esse recurso mostrou-se útil no desenho das topologias de rede a serem mostradas nessa interface gráfica.
 
+
 3. Funcionamento da Interface
 
-No projeto Routeflow do Grails, foi usado um controlador chamado InterfaceController definindo apenas a página index (def index()). Dentro dessa definição da index é feita a leitura dos arquivos de teste rftest1 e rftest2. Para leitura dos roteadores que são usados nos testes é usada uma função que encontra todos os índices de ocorrência da substring desejada. A função utilizada para encontrar todos o índices é mostrada abaixo:
+3.1 InterfaceController
+
+No projeto Routeflow do Grails, foi usado um controlador chamado InterfaceController definindo apenas a página index (def index()). Dentro dessa definição da index é feita a leitura dos arquivos de teste rftest1 e rftest2. Para leitura dos roteadores que são usados nos testes é utilizada uma função que encontra todos os índices de ocorrência da substring desejada. A função utilizada para encontrar todos o índices é mostrada abaixo:
 
 String.metaClass.indexesOf = { match ->
 			def ret = []
@@ -45,7 +48,7 @@ String.metaClass.indexesOf = { match ->
 			ret
 		  }
 		  
-Encontrados todos os índices de ocorrência, nos rftests, deve-se encontrar a substring do índice e separar essa string para encontrar o roteador a ser encontrado. Nos rftests, o comando de inicialização é 'lxc-start -n roteador -d'. No rftest1 por exemplo, existem três comandos de inicialização. Para isso encontrar um vetor com todos os índices de ocorrência, depois encontra-se a substring inteira e após isso é usado uma função tokenize() para transformar um string em um vetor de palavras. O tokenize() pega a substring 'lxc-start -n roteador -d' e gera um vetor ['lxc-start', '-n', 'roteador', '-d']. Para encontrar o roteador basta pegar o terceiro elemento, no caso vetor[2].
+Encontrados todos os índices de ocorrência, nos rftests, deve-se encontrar a substring do índice e separar essa string para encontrar o roteador. Nos rftests, o comando de inicialização é 'lxc-start -n roteador -d'. No rftest1 por exemplo, existem três comandos de inicialização. Para isso é necessário encontrar um vetor com todos os índices de ocorrência e logo depois encontra-se a substring inteira. Em seguida é usada uma função tokenize() para transformar um string em um vetor de palavras. O tokenize() pega a substring 'lxc-start -n roteador -d' e gera um vetor ['lxc-start', '-n', 'roteador', '-d']. Para encontrar o roteador basta pegar o terceiro elemento, no caso vetor[2].
 
 O exemplo abaixo gera um vetor com os roteadores do rftest1 e do rftest2:
 
@@ -59,19 +62,20 @@ for(int i = 0; i < fileContents3.size(); i++){
 
 }
 
-Sabendo quais são os roteadores, pode-se ler os endereços MAC pertencentes a cada um deles lendo os arquivos de configuração de cada um, usando o procedimento acima.
+Sabendo quais são os roteadores, pode-se ler os endereços MACs pertencentes a cada um deles lendo os arquivos de configuração de cada um, usando o procedimento acima.
 
-Finalmente os vetores contendo os roteadores e MAC são retornados para a página index.html
+Finalmente os vetores contendo os roteadores e MACs são retornados para a página index.html
 
-index.html:
+3.2 index.html
+
 Nessa página de visualização da topologia, foi usada a tag canvas do html5 para desenhar todos os roteadores, ligações e máquinas virtuais ligadas. 
 Código do canvas usado na interface da topologia:
 <canvas id="myCanvas" width="1050" height="1000" 
 		style="border:1px solid #000000;">
 		
-Para desenhar a topologia do rftest1 e rftest2 foi usada a função desenhaTopologia() que tem como parâmetros os roteadores e endereços ip dos roteadores, além de uma variável que especifica se o desenha a topologia para o rftest1 ou rftest2. Os valores dos roteadores e seus endereços MAC lidos e salvos no InterfaceController são usados nessa função para inserir corretamente esses valores corretamente na representação da topologia. 
+Para desenhar a topologia do rftest1 e rftest2 foi usada a função desenhaTopologia() que tem como parâmetros os roteadores e endereços ip dos roteadores, além de uma variável que especifica se desenha a topologia para o rftest1 ou rftest2. Os valores dos roteadores e seus endereços MAC lidos e salvos no InterfaceController são usados nessa função para inserir corretamente esses valores na representação da topologia. 
 
-Em geral, com o grais pode-se processar os dados de leitura no controlador e separadamente implementar a interface em javascript junto com html5. O uso do canvas foi bem favorável para a implementação da interface porque não nenhum carregamendo de imagens para representação da topologia, obtendo-se um melhor desempenho na execução da função desenhaTopologia().
+Em geral, com o grails pode-se processar os dados de leitura no controlador e separadamente implementar a interface em javascript junto com html5 na index. O uso do canvas foi bem favorável para a implementação da interface porque não houve nenhum carregamendo de imagens para representação da topologia, obtendo-se um melhor desempenho na execução da função desenhaTopologia().
 
 Referências
 [1] Nascimento, M. R., Rothenberg, C. E., Salvador, M. R., Denicol, R. R. and Magalhães, M. F. (2010). RouteFlow: Roteamento Commodity Sobre Redes Programáveis. XXIX Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos
