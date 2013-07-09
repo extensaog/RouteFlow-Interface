@@ -29,8 +29,8 @@ Segundo a CISCO (companhia multinacional estadunidense líder mundial no ramo da
 No projeto RouteFlow, a interface gráfica auxilia os desenvolvedores no controle da infraestrutura, monitorando o sistema remotamente via Interface Web. Nela, os desenvolvedores são capazes de interagir com a interface gráfica para que os testes sejam executados da melhor maneira possível. Essa Interface permite a inspeção da topologia utilizada nas VMs (Virtual Machines) apresentando também estatísticas do processo [4].
         	O objetivo do trabalho será o de propor melhorias a essa interface, como adição de novos recursos que facilitem ainda mais a iteração entre os desenvolvedores e o sistema. Outro fator importante é que essa interface também propiciará uma facilidade na obtenção de dados estatísticos, pois possibilitará uma maior compreensão do que ocorre no sistema para eventuais melhorias que possam vir a ser implementadas, visando o aperfeiçoamento da tecnologia.
 	
-	<b>Ferramenta Utilizadas</b>
-
+	#### Ferramenta Utilizadas 
+	
 Definiu-se que a interface gráfica proposta deve ser implementada com uso do Grails, framework web de alta produtividade para a plataforma Java, e HTML5.
 O Grails permite o isolamento do desenvolvedor dos detalhes complexos da persistência de dados e incorpora o padrão de desenvolvimento MVC de maneira natural. Ele também fornece templates web para fácil implementação da interface com o usuário e suporte para programação em Ajax.
 O HTML5 é uma linguagem para estruturação e apresentação de conteúdo para a World Wide Web e é uma tecnologia chave da Internet originalmente proposto por Opera Software.1 É a quinta versão da linguagem HTML. Esta nova versão traz consigo importantes mudanças quanto ao papel do HTML no mundo da Web, através de novas funcionalidades como semântica e acessibilidade. Dentre os novos recursos dessa versão está o Canvas, para a renderização local de desenhos 2D que permitem a economia de banda e fácil padronização de layouts. Esse recurso mostrou-se útil no desenho das topologias de rede a serem mostradas nessa interface gráfica.
@@ -38,7 +38,7 @@ O HTML5 é uma linguagem para estruturação e apresentação de conteúdo para 
 
 <b>Funcionamento da Interface</b>
 
-	<b>InterfaceController</b>
+	#### InterfaceController
 
 No projeto Routeflow do Grails, foi usado um controlador chamado InterfaceController definindo apenas a página index (def index()). Dentro dessa definição da index é feita a leitura dos arquivos de teste rftest1 e rftest2. Para leitura dos roteadores que são usados nos testes é utilizada uma função que encontra todos os índices de ocorrência da substring desejada. A função utilizada para encontrar todos o índices é mostrada abaixo:
 
@@ -69,7 +69,7 @@ Sabendo quais são os roteadores, pode-se ler os endereços MACs pertencentes a 
 
 Finalmente os vetores contendo os roteadores e MACs são retornados para a página index.html
 
-	<b>index.html</b>
+	#### index.html
 
 Nessa página de visualização da topologia, foi usada a tag canvas do html5 para desenhar todos os roteadores, ligações e máquinas virtuais ligadas. 
 Código do canvas usado na interface da topologia:
